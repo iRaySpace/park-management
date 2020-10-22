@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include park_management *.css
+recursive-include park_management *.csv
+recursive-include park_management *.html
+recursive-include park_management *.ico
+recursive-include park_management *.js
+recursive-include park_management *.json
+recursive-include park_management *.md
+recursive-include park_management *.png
+recursive-include park_management *.py
+recursive-include park_management *.svg
+recursive-include park_management *.txt
+recursive-exclude park_management *.pyc
