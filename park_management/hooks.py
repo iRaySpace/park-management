@@ -34,7 +34,8 @@ fixtures = [
                     "Customer-pm_flat_no",
                     "Customer-pm_property_card_no",
                     "Customer-pm_cpr_no",
-                    "Customer-pm_customer_sb"
+                    "Customer-pm_customer_sb",
+                    "Customer-pm_vehicle_no"
                 ]
             ]
         ]
