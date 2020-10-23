@@ -1,11 +1,27 @@
 erpnext.pos.PointOfSale = erpnext.pos.PointOfSale.extend({
+  get_customer_info: async function(customer) {
+    // initialize cache
+    if (!this.__customer_info) this.__customer_info = {};
+    if (!this.__customer_info[customer]) {
+      this.__customer_info[customer] = await _get_customer_info(customer);
+    }
+    const customer_info = this.__customer_info[customer];
+    _validate_customer_info(customer_info);
+    return customer_info;
+  },
+  set_default_customer: function() {
+    this._super();
+    this.get_customer_info(this.default_customer).then((res) => {
+      this.customer_info = res;
+    });
+  },
   make_customer: function() {
     this._super();
-    const me = this;
-    me.party_field.$input.on('awesomplete-select', async function(e) {
+    this.party_field.$input.on('awesomplete-select', (e) => {
       const customer = e.target.value;
-      me.customer_info = await _get_customer_info(customer);
-      _validate_customer_info(me.customer_info);
+      this.get_customer_info(customer).then((res) => {
+        this.customer_info = res;
+      })
     });
   },
   validate_add_to_cart: function() {
